@@ -1,0 +1,12 @@
+server:
+  port: 8866
+
+zookeeper:
+  address: 127.0.0.1
+  port: 2181
+
+dubbo:
+  provider:
+    name: zzqfsyy-message-provider
+    port: 20880
+    ThreadNum: 20

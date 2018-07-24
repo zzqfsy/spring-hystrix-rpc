@@ -6,33 +6,21 @@
 
     <groupId>com.zzqfsy</groupId>
     <artifactId>spring-hystrix-rpc</artifactId>
-    <version>1.0-Release</version>
+    <packaging>pom</packaging>
+    <version>1.0-SNAPSHOT</version>
 
-    <properties>
-        <java.version>1.8</java.version>
-        <start-class>com.zzqfsy.Application</start-class>
-    </properties>
+    <modules>
+        <module>spring-dubbo-provider</module>
+        <module>spring-dubbo-hystrix-consumer</module>
+        <module>rpc-api</module>
+    </modules>
 
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>1.5.9.RELEASE</version>
+        <version>2.0.3.RELEASE</version>
+        <relativePath/> <!-- lookup parent from repository -->
     </parent>
 
-    <dependencies>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-web</artifactId>
-        </dependency>
 
-        <dependency>
-            <groupId>com.netflix.hystrix</groupId>
-            <artifactId>hystrix-core</artifactId>
-            <version>1.5.12</version>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-test</artifactId>
-        </dependency>
-    </dependencies>
 </project>
