@@ -5,12 +5,13 @@ import com.alibaba.fastjson.JSONObject;
 import com.zzqfsy.req.MessageReq;
 import com.zzqfsy.resp.BaseResp;
 import com.zzqfsy.rpc.IMessageFacade;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.io.IOException;
-import java.util.ArrayList;
 
 /**
  * @Author: zzqfsy
@@ -20,6 +21,7 @@ import java.util.ArrayList;
  **/
 @RestController
 public class TestConsumeController {
+    private Logger logger = LoggerFactory.getLogger(TestConsumeController.class);
 
     @RequestMapping(value = "/test/bootstarp", method = RequestMethod.GET)
     public String testbootstarp() {
@@ -41,7 +43,30 @@ public class TestConsumeController {
         messageReq.setSubject("测试");
         messageReq.setMessage("我只是测试一下！");
         BaseResp baseResp = iMessageFacade.send(messageReq);
-        System.out.println("testMessage: " + JSONObject.toJSONString(baseResp));
+        logger.info("testMessage: " + JSONObject.toJSONString(baseResp));
+        return baseResp;
+    }
+
+    @RequestMapping(value = "/test/message/timeout", method = RequestMethod.GET)
+    public BaseResp testMessageTimeout() throws IOException {
+        MessageReq messageReq = new MessageReq();
+        messageReq.setRecipient("张三");
+        messageReq.setSubject("测试");
+        messageReq.setMessage("我只是测试一下！");
+        BaseResp baseResp = iMessageFacade.sendTimeout(messageReq, 5000L);
+        logger.info("testMessageTimeout: " + JSONObject.toJSONString(baseResp));
+        return baseResp;
+    }
+
+
+    @RequestMapping(value = "/test/message/exception", method = RequestMethod.GET)
+    public BaseResp testMessageException() throws IOException {
+        MessageReq messageReq = new MessageReq();
+        messageReq.setRecipient("张三");
+        messageReq.setSubject("测试");
+        messageReq.setMessage("我只是测试一下！");
+        BaseResp baseResp = iMessageFacade.sendException(messageReq);
+        logger.info("testMessageException: " + JSONObject.toJSONString(baseResp));
         return baseResp;
     }
 }

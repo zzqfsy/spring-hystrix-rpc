@@ -13,7 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
  * @Date: Created in 21:55 2018/7/24
  * @Modified By:
  **/
-@Service(timeout = 10000, cluster = "failover", loadbalance = "roundrobin", protocol = {DubboConfig.ProtocolName}, version = "1.0.0")
+@Service(timeout = 3000, cluster = "failover", loadbalance = "roundrobin", protocol = {DubboConfig.ProtocolName}, version = "1.0.0")
 public class MessageFacade implements IMessageFacade {
 
     @Autowired
@@ -22,5 +22,15 @@ public class MessageFacade implements IMessageFacade {
     @Override
     public BaseResp send(MessageReq messageReq) {
         return BaseResp.getInstance(messageService.send(messageReq));
+    }
+
+    @Override
+    public BaseResp sendTimeout(MessageReq messageReq, Long millis) {
+        return BaseResp.getInstance(messageService.sendTimeout(messageReq, millis));
+    }
+
+    @Override
+    public BaseResp sendException(MessageReq messageReq) {
+        return BaseResp.getInstance(messageService.sendException(messageReq));
     }
 }

@@ -17,4 +17,19 @@ public interface IMessageFacade {
      * @return
      */
     BaseResp send(MessageReq messageReq);
+
+    /**
+     * 发送消息，等待时间
+     * @param messageReq
+     * @param millis
+     * @return
+     */
+    BaseResp sendTimeout(MessageReq messageReq, Long millis);
+
+    /**
+     * 发送消息，抛出异常
+     * @param messageReq
+     * @return
+     */
+    BaseResp sendException(MessageReq messageReq);
 }
