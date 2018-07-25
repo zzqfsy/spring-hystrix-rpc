@@ -31,7 +31,7 @@ public class DubboConfig {
     public ConsumerConfig consumerConfig() {
         ConsumerConfig consumerConfig = new ConsumerConfig();
         consumerConfig.setTimeout(3000);
-        consumerConfig.setFilter("RPCHystrixFilter");
+//        consumerConfig.setFilter("RPCHystrixFilter");
         return consumerConfig;
     }
 

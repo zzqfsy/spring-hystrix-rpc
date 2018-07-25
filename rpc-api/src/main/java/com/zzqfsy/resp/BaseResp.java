@@ -27,6 +27,10 @@ public class BaseResp<T> implements Serializable {
         return new BaseResp(result);
     }
 
+    public static BaseResp getFailInstance(String errorMsg){
+        return new BaseResp("100").setErrorMsgExtend(errorMsg);
+    }
+
     private BaseResp() {
         this.code = "0";
     }
@@ -34,6 +38,10 @@ public class BaseResp<T> implements Serializable {
     private BaseResp(T result) {
         this.code = "0";
         this.result = result;
+    }
+
+    private BaseResp(String code) {
+        this.code = code;
     }
 
     public String getCode() {
@@ -52,6 +60,11 @@ public class BaseResp<T> implements Serializable {
         this.result = result;
     }
 
+    public BaseResp setResultExtend(T result) {
+        this.result = result;
+        return this;
+    }
+
     public Integer getErrorType() {
         return errorType;
     }
@@ -68,8 +81,13 @@ public class BaseResp<T> implements Serializable {
         this.errorMsg = errorMsg;
     }
 
+    public BaseResp setErrorMsgExtend(String errorMsg) {
+        this.errorMsg = errorMsg;
+        return this;
+    }
+
     public boolean isSuccess() {
-        return isSuccess;
+        return isSuccess & "0".equals(code);
     }
 
     public void setSuccess(boolean success) {

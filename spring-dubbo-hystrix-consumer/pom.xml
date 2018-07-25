@@ -61,6 +61,11 @@
         </dependency>
         <dependency>
             <groupId>com.netflix.hystrix</groupId>
+            <artifactId>hystrix-javanica</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.netflix.hystrix</groupId>
             <artifactId>hystrix-metrics-event-stream</artifactId>
         </dependency>
 

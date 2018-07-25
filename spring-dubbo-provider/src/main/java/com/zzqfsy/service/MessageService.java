@@ -50,6 +50,6 @@ public class MessageService {
      */
     public MessageResp sendException(MessageReq messageReq){
         logger.info("sendException message: " + JSONObject.toJSONString(messageReq));
-        throw new RuntimeException("sendException");
+        throw new RuntimeException("customRuntimeException");
     }
 }

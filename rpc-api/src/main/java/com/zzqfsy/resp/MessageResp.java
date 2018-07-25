@@ -13,17 +13,17 @@ public class MessageResp implements Serializable{
     public MessageResp() {
     }
 
-    public MessageResp(String result) {
-        this.result = result;
+    public MessageResp(String tip) {
+        this.tip = tip;
     }
 
-    private String result;
+    private String tip;
 
-    public String getResult() {
-        return result;
+    public String getTip() {
+        return tip;
     }
 
-    public void setResult(String result) {
-        this.result = result;
+    public void setTip(String tip) {
+        this.tip = tip;
     }
 }
