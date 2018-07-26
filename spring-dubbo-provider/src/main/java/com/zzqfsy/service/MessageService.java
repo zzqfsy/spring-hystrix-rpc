@@ -7,6 +7,10 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.util.Date;
+
 /**
  * @Author: zzqfsy
  * @Description: 消息业务
@@ -24,7 +28,7 @@ public class MessageService {
      */
     public MessageResp send(MessageReq messageReq){
         logger.info("send message: " + JSONObject.toJSONString(messageReq));
-        return new MessageResp("success");
+        return new MessageResp(LocalTime.now().toString());
     }
 
     /**
