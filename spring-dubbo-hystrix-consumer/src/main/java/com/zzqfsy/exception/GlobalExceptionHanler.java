@@ -35,7 +35,7 @@ public class GlobalExceptionHanler {
     @ResponseStatus(HttpStatus.OK)
     public BaseResp errorHandler(HttpServletRequest req, RpcException exception) throws Exception {
         loggerException(exception, true);
-        return BaseResp.getFailInstance("服务器繁忙");
+        return BaseResp.getFailInstance("服务繁忙，请稍等重试");
     }
 
     @ExceptionHandler(value = Exception.class)
