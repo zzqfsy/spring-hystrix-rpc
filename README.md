@@ -68,16 +68,16 @@
 > ./spring-dubbo-hystrix-consumer/src/main/resources/dubboTest.jmx
 
 压测结果—正常调用—不使用hystrix
-![exception_thread_group](https://zzqfsy.github.io/image/hystrix/exception_thread_group.png)
+![exception_thread_group](https://raw.githubusercontent.com/zzqfsy/spring-hystrix-rpc/master/resource/exception_thread_group.png)
 
 压测结果—异常调用—使用hystrix
-![normal_thread_group](https://zzqfsy.github.io/image/hystrix/normal_thread_group.png)
+![normal_thread_group](https://raw.githubusercontent.com/zzqfsy/spring-hystrix-rpc/master/resource/normal_thread_group.png)
 
 压测结果—超时调用—不使用hystrix
-![timeout_thread_group_by_no_hystrix](https://zzqfsy.github.io/image/hystrix/timeout_thread_group_by_no_hystrix.png)
+![timeout_thread_group_by_no_hystrix](https://raw.githubusercontent.com/zzqfsy/spring-hystrix-rpc/master/resource/timeout_thread_group_by_no_hystrix.png)
 
 压测结果—超时调用—使用hystrix
-![timeout_thread_group_by_hystrix](https://zzqfsy.github.io/image/hystrix/timeout_thread_group_by_hystrix.png)
+![timeout_thread_group_by_hystrix](https://raw.githubusercontent.com/zzqfsy/spring-hystrix-rpc/master/resource/timeout_thread_group_by_hystrix.png)
 
 
 ## 监控
