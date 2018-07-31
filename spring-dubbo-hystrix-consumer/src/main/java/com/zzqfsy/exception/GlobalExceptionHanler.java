@@ -2,6 +2,7 @@ package com.zzqfsy.exception;
 
 import com.alibaba.dubbo.rpc.RpcException;
 import com.google.common.base.Throwables;
+import com.netflix.hystrix.exception.HystrixRuntimeException;
 import com.zzqfsy.resp.BaseResp;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -11,6 +12,7 @@ import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.NoHandlerFoundException;
 
 import javax.servlet.http.HttpServletRequest;
+import java.time.LocalTime;
 
 /**
  * @Author: zzqfsy
@@ -32,18 +34,26 @@ public class GlobalExceptionHanler {
 
     @ExceptionHandler(value = RpcException.class)
     @ResponseBody
-    @ResponseStatus(HttpStatus.OK)
+    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     public BaseResp errorHandler(HttpServletRequest req, RpcException exception) throws Exception {
         loggerException(exception, true);
-        return BaseResp.getFailInstance("服务繁忙，请稍等重试");
+        return BaseResp.getFailInstance("服务繁忙，请稍等重试").setResultExtend(LocalTime.now());
+    }
+
+    @ExceptionHandler(value = HystrixRuntimeException.class)
+    @ResponseBody
+    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+    public BaseResp errorHandler(HttpServletRequest req, HystrixRuntimeException exception) {
+        loggerException(exception, true);
+        return BaseResp.getFailInstance("服务繁忙，请稍等重试").setResultExtend(LocalTime.now());
     }
 
     @ExceptionHandler(value = Exception.class)
     @ResponseBody
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
-    public BaseResp exception(Exception exception, WebRequest request) {
+    public BaseResp exception(HttpServletRequest req, Exception exception, WebRequest request) {
         loggerException(exception, true);
-        return BaseResp.getFailInstance(Throwables.getRootCause(exception).getMessage());
+        return BaseResp.getFailInstance(Throwables.getRootCause(exception).getMessage()).setResultExtend(LocalTime.now());
     }
 
     private void loggerException(Exception ex, boolean isImportance){

@@ -64,3 +64,21 @@
 ```
 
 ## 流控效果
+测试脚本
+> ./spring-dubbo-hystrix-consumer/src/main/resources/dubboTest.jmx
+
+压测结果—正常调用—不使用hystrix
+![exception_thread_group](https://zzqfsy.github.io/image/hystrix/exception_thread_group.png)
+
+压测结果—异常调用—使用hystrix
+![normal_thread_group](https://zzqfsy.github.io/image/hystrix/normal_thread_group.png)
+
+压测结果—超时调用—不使用hystrix
+![timeout_thread_group_by_no_hystrix](https://zzqfsy.github.io/image/hystrix/timeout_thread_group_by_no_hystrix.png)
+
+压测结果—超时调用—使用hystrix
+![timeout_thread_group_by_hystrix](https://zzqfsy.github.io/image/hystrix/timeout_thread_group_by_hystrix.png)
+
+
+## 监控
+* [standalone-hystrix-dashboard](https://github.com/kennedyoliveira/standalone-hystrix-dashboard)

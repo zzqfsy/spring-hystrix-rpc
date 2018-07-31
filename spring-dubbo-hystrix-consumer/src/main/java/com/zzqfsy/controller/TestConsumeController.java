@@ -52,13 +52,24 @@ public class TestConsumeController {
         return baseResp;
     }
 
+    @RequestMapping(value = "/test/message/timeout/hystrix", method = RequestMethod.GET)
+    public BaseResp testMessageTimeoutHystrix() throws IOException {
+        MessageReq messageReq = new MessageReq();
+        messageReq.setRecipient("张三");
+        messageReq.setSubject("测试");
+        messageReq.setMessage("我只是测试一下！");
+        BaseResp baseResp = messageProxy.sendTimeoutHystrix(messageReq);
+        logger.info("testMessageTimeout: " + JSONObject.toJSONString(baseResp));
+        return baseResp;
+    }
+
     @RequestMapping(value = "/test/message/timeout", method = RequestMethod.GET)
     public BaseResp testMessageTimeout() throws IOException {
         MessageReq messageReq = new MessageReq();
         messageReq.setRecipient("张三");
         messageReq.setSubject("测试");
         messageReq.setMessage("我只是测试一下！");
-        BaseResp baseResp = messageProxy.sendTimeout(messageReq);
+        BaseResp baseResp = messageProxy.sendTimeoutNoHystrix(messageReq);
         logger.info("testMessageTimeout: " + JSONObject.toJSONString(baseResp));
         return baseResp;
     }

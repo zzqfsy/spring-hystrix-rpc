@@ -1,1 +1,2 @@
 RPCHystrixFilter=com.zzqfsy.filter.RPCHystrixFilter
+HystrixRequestContextFilter=com.zzqfsy.filter.HystrixRequestContextFilter
